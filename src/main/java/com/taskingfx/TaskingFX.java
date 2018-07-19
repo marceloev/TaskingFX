@@ -15,5 +15,6 @@ public class TaskingFX {
                 "teste@email.com",
                 null
         );
+        //GravaLog.gravaInfo(TaskingFX.class, user.toString());
     }
 }
