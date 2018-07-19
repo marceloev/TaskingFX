@@ -37,6 +37,31 @@ public class User {
     @Column(name = "TELEFONE", length = 11, nullable = false)
     private String telefone;
 
+    public User() {
+
+    }
+
+    public User(Character ativo, String login, String senha, String nome, String sobrenome, String email, String telefone) {
+        this.ativo = ativo;
+        this.login = login;
+        this.senha = senha;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
+    public User(int codigo, Character ativo, String login, String senha, String nome, String sobrenome, String email, String telefone) {
+        this.codigo = codigo;
+        this.ativo = ativo;
+        this.login = login;
+        this.senha = senha;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -98,31 +123,6 @@ public class User {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public User() {
-
-    }
-
-    public User(Character ativo, String login, String senha, String nome, String sobrenome, String email, String telefone) {
-        this.ativo = ativo;
-        this.login = login;
-        this.senha = senha;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.telefone = telefone;
-    }
-
-    public User(int codigo, Character ativo, String login, String senha, String nome, String sobrenome, String email, String telefone) {
-        this.codigo = codigo;
-        this.ativo = ativo;
-        this.login = login;
-        this.senha = senha;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
         this.telefone = telefone;
     }
 
