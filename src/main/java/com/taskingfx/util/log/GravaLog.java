@@ -8,30 +8,30 @@ import java.net.URL;
 public class GravaLog {
 
     private final static Logger log = Logger.getLogger(GravaLog.class);
-    private final static URL url = GravaLog.class.getResource("/com/taskingfx/util/log/log4j.properties");
+    private final static URL url = GravaLog.class.getResource("/statics/properties/log4j.properties");
     private static Boolean configurado = false;
 
     public static void gravaInfo(Class invoker, String info) {
         if (isConfigurado()) {
-            log.info("[" + invoker + "] : " + info);
+            log.info("[" + invoker.getName() + "] : " + info);
         }
     }
 
     public static void gravaAlerta(Class invoker, String info) {
         if (isConfigurado()) {
-            log.warn("[" + invoker + "] : " + info);
+            log.warn("[" + invoker.getName() + "] : " + info);
         }
     }
 
     public static void gravaErro(Class invoker, String info) {
         if (isConfigurado()) {
-            log.error("[" + invoker + "] : " + info);
+            log.error("[" + invoker.getName() + "] : " + info);
         }
     }
 
     public static void gravaErro(Class invoker, String info, Throwable trhows) {
         if (isConfigurado()) {
-            log.error("[" + invoker + "] : " + info, trhows);
+            log.error("[" + invoker.getName() + "] : " + info, trhows);
         }
     }
 

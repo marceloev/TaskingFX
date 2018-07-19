@@ -1,12 +1,13 @@
 package com.taskingfx;
 
-import java.net.URL;
+import com.taskingfx.util.log.GravaLog;
 
 public class TaskingFX {
 
     public static void main(String[] args) {
-        URL url = TaskingFX.class.getResource("util/log/");
-        System.out.println(url);
-        //GravaLog.gravaInfo(TaskingFX.class, user.toString());
+        /*UserDAO dao = new UserDAO();
+        User user = dao.findAll().get(0);
+        System.out.println(user.toString());*/
+        GravaLog.gravaInfo(TaskingFX.class, "teste1");
     }
 }
