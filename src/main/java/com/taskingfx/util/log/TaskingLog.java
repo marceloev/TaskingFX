@@ -16,9 +16,23 @@ public class TaskingLog {
             logger.info("[" + invoker.getName() + "] : " + info);
     }
 
+    public static void gravaInfo(Class invoker, String info, String tips) {
+        if (isConfigurado()) {
+            logger.info("[" + invoker.getName() + "] : " + info);
+            logger.info("[" + invoker.getName() + "] : " + tips);
+        }
+    }
+
     public static void gravaAlerta(Class invoker, String info) {
         if (isConfigurado())
             logger.warn("[" + invoker.getName() + "] : " + info);
+    }
+
+    public static void gravaAlerta(Class invoker, String info, String tips) {
+        if (isConfigurado()) {
+            logger.warn("[" + invoker.getName() + "] : " + info);
+            logger.warn("[" + invoker.getName() + "] : " + tips);
+        }
     }
 
     public static void gravaErro(Class invoker, String info) {

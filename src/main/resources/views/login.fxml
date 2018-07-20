@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<GridPane prefHeight="143.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/8.0.111"          xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.taskingfx.controllers.LoginCtrl">
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="42.0" prefWidth="92.0"/>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="371.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="125.0" vgrow="ALWAYS"/>
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="126.0" vgrow="ALWAYS"/>
+    </rowConstraints>
+</GridPane>
+</HBox>
