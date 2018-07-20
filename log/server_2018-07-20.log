@@ -1,0 +1,2 @@
+20/07/2018-00:01:19,721 | INFO [com.taskingfx.TaskingFX] : User{codigo=1, ativo=S, login='MARCELOEV', senha='marcelo26', nome='Marcelo', sobrenome='Costa Domingues', email='marceloevo@gmail.com', telefone='34991940773'} 
+20/07/2018-00:01:47,646 | DEBUG Connection pool now considered primed; min-size will be maintained 
