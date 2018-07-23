@@ -2,11 +2,12 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172"
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.taskingfx.controllers.LoginCtrl">
     <children>
         <StackPane layoutX="184.0" layoutY="100.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
@@ -29,39 +30,53 @@
                                         <Image url="@../statics/imgs/User.png"/>
                                     </image>
                                 </ImageView>
-                                <JFXTextField labelFloat="true" layoutX="75.0" layoutY="147.0" maxWidth="316.0"
-                                              minWidth="233.0" prefHeight="31.0" prefWidth="316.0"
-                                              promptText="Digite aqui seu usuário" fx:id="txfLogin">
+                                <JFXTextField fx:id="txfLogin" labelFloat="true" layoutX="75.0" layoutY="147.0"
+                                              maxWidth="316.0" minWidth="233.0" prefHeight="31.0" prefWidth="316.0"
+                                              promptText="Digite aqui seu usuário">
                                     <font>
                                         <Font name="Roboto Medium" size="14.0"/>
                                     </font>
                                 </JFXTextField>
-                                <JFXPasswordField labelFloat="true" layoutX="75.0" layoutY="195.0" maxWidth="316.0"
-                                                  minWidth="235.0" prefHeight="31.0" prefWidth="316.0"
-                                                  promptText="Digite aqui sua senha" fx:id="pwfSenha">
+                                <JFXPasswordField fx:id="pwfSenha" labelFloat="true" layoutX="75.0" layoutY="195.0"
+                                                  maxWidth="316.0" minWidth="235.0" prefHeight="31.0" prefWidth="316.0"
+                                                  promptText="Digite aqui sua senha">
                                     <font>
                                         <Font name="Roboto Medium" size="14.0"/>
                                     </font>
                                 </JFXPasswordField>
-                                <JFXCheckBox checkedColor="#ff1744" layoutX="75.0" layoutY="244.0" prefHeight="31.0"
-                                             prefWidth="171.0" text="Mantenha-me logado" fx:id="ckbManterLogado">
+                                <JFXCheckBox fx:id="ckbManterLogado" checkedColor="#ff1744" layoutX="75.0"
+                                             layoutY="244.0" prefHeight="31.0" prefWidth="171.0"
+                                             text="Mantenha-me logado">
                                     <font>
                                         <Font name="Roboto Regular" size="14.0"/>
                                     </font>
                                 </JFXCheckBox>
-                                <JFXButton layoutX="185.0" layoutY="286.0" prefHeight="32.0" prefWidth="100.0"
-                                           style="-fx-background-color: #2196f3;" text="Login" textFill="WHITE" fx:id="btnLogin">
+                                <JFXButton fx:id="btnLogin" layoutX="75.0" layoutY="287.0" prefHeight="32.0"
+                                           prefWidth="100.0" style="-fx-background-color: #2196f3;" text="Login"
+                                           textFill="WHITE">
                                     <font>
                                         <Font name="Roboto Bold" size="14.0"/>
                                     </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
                                 </JFXButton>
-                                <JFXButton layoutX="348.0" layoutY="290.0"/>
+                                <JFXButton fx:id="btnCadastrar" layoutX="291.0" layoutY="287.0" prefHeight="32.0"
+                                           prefWidth="100.0" style="-fx-background-color: green;" text="Cadastrar"
+                                           textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </JFXButton>
                             </children>
                         </AnchorPane>
                         <VBox layoutX="188.0" layoutY="24.0">
                             <children>
-                                <Label alignment="CENTER" prefHeight="34.0" prefWidth="425.0"
-                                       text="Sistemas TaskingFX" textAlignment="CENTER" textFill="WHITE">
+                                <Label alignment="CENTER" prefHeight="34.0" prefWidth="425.0" text="Sistemas TaskingFX"
+                                       textAlignment="CENTER" textFill="WHITE">
                                     <font>
                                         <Font name="Roboto Bold" size="18.0"/>
                                     </font>
