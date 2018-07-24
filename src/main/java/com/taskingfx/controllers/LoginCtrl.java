@@ -53,7 +53,7 @@ public class LoginCtrl implements TskController {
             stage.show();
         } catch (Exception ex) {
             new ModelDialog(ModelDialogType.Erro)
-                    .show("Erro ao tentar construir tela de login",
+                    .show("Erro ao tentar construir tela de cadastro de usuário",
                             ex);
         }
     }
