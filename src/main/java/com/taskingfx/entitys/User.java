@@ -13,28 +13,28 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_TUSER")
-    @Column(name = "CODUSU")
+    @Column(name = "CODUSU", columnDefinition = "Código do Usuário")
     private int codigo;
 
-    @Column(name = "ATIVO", nullable = false)
+    @Column(name = "ATIVO", columnDefinition = "Ativo", nullable = false)
     private Character ativo = 'S';
 
-    @Column(name = "LOGIN", length = 20, nullable = false)
+    @Column(name = "LOGIN", columnDefinition = "Login", length = 20, nullable = false)
     private String login;
 
-    @Column(name = "SENHA", length = 80, nullable = false)
+    @Column(name = "SENHA", columnDefinition = "Senha", length = 80, nullable = false)
     private String senha;
 
-    @Column(name = "NOME", length = 25, nullable = false, unique = true)
+    @Column(name = "NOME", columnDefinition = "Nome", length = 25, nullable = false, unique = true)
     private String nome;
 
-    @Column(name = "SOBRENOME", length = 60)
+    @Column(name = "SOBRENOME", columnDefinition = "Sobrenome", length = 60)
     private String sobrenome;
 
-    @Column(name = "EMAIL", length = 60, nullable = false)
+    @Column(name = "EMAIL", columnDefinition = "E-mail", length = 60, nullable = false)
     private String email;
 
-    @Column(name = "TELEFONE", length = 11, nullable = false)
+    @Column(name = "TELEFONE", columnDefinition = "Telefone", length = 11, nullable = false)
     private String telefone;
 
     public User() {
