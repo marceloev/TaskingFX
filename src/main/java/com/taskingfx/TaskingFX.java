@@ -26,15 +26,16 @@ public class TaskingFX extends Application {
             stage.setTitle("Sistema TaskingFX");
             stage.show();
             User user = new User('S',
-                    "MARCELOEV",
+                    "MA RCE''LOEV",
                     "marcelo26",
                     "teste",
                     "teste",
                     "teste",
                     "teste");
             JpaValidation validation = JpaValidator
-                    .getFieldErrors(user.getClass().getDeclaredField("nome"),
-                            user.getNome());
+                    .getFieldErrors(user.getClass().getDeclaredField("login"),
+                            user.getLogin());
+            System.out.println("**** Erros ****");
             validation.getErrors().forEach(error -> System.out.print(error));
         } catch (Exception ex) {
             new ModelDialog(ModelDialogType.Erro)

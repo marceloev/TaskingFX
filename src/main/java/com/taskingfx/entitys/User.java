@@ -19,13 +19,13 @@ public class User {
     @Column(name = "ATIVO", columnDefinition = "Ativo", nullable = false)
     private Character ativo = 'S';
 
-    @Column(name = "LOGIN", columnDefinition = "Login", length = 20, nullable = false)
+    @Column(name = "LOGIN", columnDefinition = "Login", length = 20, nullable = false, unique = true)
     private String login;
 
     @Column(name = "SENHA", columnDefinition = "Senha", length = 80, nullable = false)
     private String senha;
 
-    @Column(name = "NOME", columnDefinition = "Nome", length = 25, nullable = false, unique = true)
+    @Column(name = "NOME", columnDefinition = "Nome", length = 25, nullable = false)
     private String nome;
 
     @Column(name = "SOBRENOME", columnDefinition = "Sobrenome", length = 60)
