@@ -1,25 +1,23 @@
 package com.taskingfx.impls;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
-public class JpaValidator {
+public class JpaValidator<JpaEntity> {
 
-    private static final EntityManagerFactory factory =
-            Persistence.createEntityManagerFactory("TaskingFX");
-    private static final EntityManager entityManager =
-            factory.createEntityManager();
-
-    public static Boolean checkIfUnique(Field field, String value) {
-        Query query = entityManager
-                .createQuery(String.format("FROM %s\nWHERE 1 = 0",
-                        field.getClass().getName()));
-        return !query.getResultList().isEmpty();
+    public List<JpaValidation> getClassFieldErrors(JpaEntity jpaEntity) {
+        List<JpaValidation> validationList = new ArrayList<>();
+        for (Field field : jpaEntity.getClass().getFields()) {
+            JpaValidation jpaValidation = getFieldErrors(field);
+            if (!jpaValidation.getErrors().isEmpty())
+                validationList.add(jpaValidation);
+        }
+        return validationList;
     }
 
-    public static JpaValidation getFieldErrors(Field field, String value) {
-        /*Column column = User.class.getDeclaredField("email").getAnnotation(Column.class);
-            System.out.print(column.name() + " | " + column.columnDefinition());*/
+    public static JpaValidation getFieldErrors(Field field) {
         Column column = field.getAnnotation(Column.class);
         JpaValidation jpaValidation = new JpaValidation(field);
         if (column == null) {
@@ -28,23 +26,17 @@ public class JpaValidator {
                     field.getName()));
             return jpaValidation;
         } else {
-            if (value == null || value.isEmpty()) {
+            if (field.toString() == null || field.toString().isEmpty()) {
                 if (!column.nullable()) {
                     jpaValidation.getErrors()
                             .add(String.format("%s não pode ser vazio", column.columnDefinition()));
                 }
             }
-            if (value != null && value.length() > column.length()) {
+            if (field.toString() != null && field.toString().length() > column.length()) {
                 jpaValidation.getErrors()
                         .add(String.format("%s deve conter até %d dígitos",
                                 column.columnDefinition(),
                                 column.length()));
-            }
-            if (column.unique()) {
-                if (!checkIfUnique(field, value)) {
-                    jpaValidation.getErrors()
-                            .add(String.format("Valor duplicado para %s", column.columnDefinition()));
-                }
             }
         }
         return jpaValidation;
