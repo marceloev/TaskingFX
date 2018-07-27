@@ -1,7 +1,7 @@
 package com.taskingfx;
 
 import com.taskingfx.entitys.User;
-import com.taskingfx.impls.JpaValidationt;
+import com.taskingfx.impls.JpaValidator;
 import com.taskingfx.model.dialogs.ModelDialog;
 import com.taskingfx.model.dialogs.ModelDialogType;
 import com.taskingfx.util.Paths;
@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class TaskingFX extends Application {
+
+    JpaValidator<User> userJpaValidator = new JpaValidator<>();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,12 +29,12 @@ public class TaskingFX extends Application {
             User user = new User('S',
                     "MA RCE'çlklkçlkçlkçlklçkçlçlkkçl'LOEV",
                     null,
-                    "tesqwerqwerwerqwerqwerqwerwqreqwerqwrete",
+                    "tesqwfdaojffasojoajisdojiadswe",
                     "teste",
                     null,
                     "teste");
-            new JpaValidationt<User>().valid(user);
-            System.out.println("**** Erros ****");
+            new ModelDialog(ModelDialogType.Erro)
+                    .show(userJpaValidator.getClassFieldErrosStringBuilder(userJpaValidator.getClassFieldErrors(user)));
         } catch (Exception ex) {
             new ModelDialog(ModelDialogType.Erro)
                     .show("Erro ao tentar construir tela de login",
