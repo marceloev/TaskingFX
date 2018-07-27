@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity(name = "User")
 @NamedQueries({
         @NamedQuery(name = "User.findByLogin",
-                query = "SELECT U FROM User U WHERE U.login = :P_LOGIN")
+                query = "SELECT U FROM User U WHERE U.login = :P_LOGIN"),
+        @NamedQuery(name = "User.findIfAlreadyExists",
+                query = "SELECT U FROM User U WHERE U.login = :P_LOGIN AND CODUSU <> :P_CODUSU")
 })
 @Table(name = "TUSER", uniqueConstraints =
 @UniqueConstraint(columnNames = {"CODUSU"}, name = "empresa_uk"))

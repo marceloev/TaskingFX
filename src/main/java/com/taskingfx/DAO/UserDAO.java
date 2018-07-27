@@ -35,4 +35,14 @@ public class UserDAO extends GenericDAO<User, Integer> {
         query.setParameter("P_LOGIN", login);
         return (User) query.getSingleResult();
     }
+
+    public Boolean findIfAlreadyExists(String login, Integer codigo) {
+        Query query = this.getEntityManager().createNamedQuery("User.findIfAlreadyExists");
+        query.setParameter("P_LOGIN", login);
+        if(codigo == null)
+            query.setParameter("P_CODUSU", 0);
+        else
+            query.setParameter("P_CODUSU", codigo);
+        return !query.getResultList().isEmpty();
+    }
 }

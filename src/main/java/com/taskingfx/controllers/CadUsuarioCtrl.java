@@ -5,16 +5,21 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.taskingfx.DAO.UserDAO;
 import com.taskingfx.entitys.User;
+import com.taskingfx.impls.JpaValidator;
 import com.taskingfx.impls.TskController;
 import com.taskingfx.model.dialogs.ModelDialog;
 import com.taskingfx.model.dialogs.ModelDialogType;
+import com.taskingfx.util.log.TaskingLog;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+
+import javax.xml.bind.ValidationException;
 
 public class CadUsuarioCtrl implements TskController {
 
     UserDAO service = new UserDAO();
     User user = new User();
+    JpaValidator<User> userJpaValidator = new JpaValidator<>(user);
 
     @FXML
     public JFXTextField txfLogin;
@@ -45,10 +50,18 @@ public class CadUsuarioCtrl implements TskController {
 
     private void cadastrar() {
         try {
+            userJpaValidator.validate();
+            if (service.findIfAlreadyExists(user.getLogin(), user.getCodigo()))
+                throw new ValidationException("Já existe um usuário cadastrado para este login");
             service.save(user);
+            new ModelDialog(ModelDialogType.Info).show("Usuário cadastrado com sucesso");
+            exit();
+        } catch (ValidationException ex) {
+            new ModelDialog(ModelDialogType.Erro).show(ex.getMessage());
+            TaskingLog.gravaErro(this.getClass(), "Erro de validação em " + user.getClass().getName(), ex);
         } catch (Exception ex) {
-            new ModelDialog(ModelDialogType.Erro)
-                    .show(ex.getMessage(), ex);
+            new ModelDialog(ModelDialogType.Erro).show(ex.getMessage());
+            TaskingLog.gravaErro(this.getClass(), "Erro de validação em " + user.getClass().getName(), ex);
         }
     }
 
