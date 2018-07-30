@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.taskingfx.model.fields.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -49,14 +51,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <JFXTextField fx:id="txfLogin" focusColor="#295fff" labelFloat="true" promptText="Login">
+                <ModelField fx:id="txfLogin" fieldSize="20" modelFieldType="Upper" focusColor="#295fff"
+                            labelFloat="true" promptText="Login">
                     <font>
                         <Font name="Roboto Medium" size="14.0"/>
                     </font>
                     <GridPane.margin>
                         <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
-                </JFXTextField>
+                </ModelField>
                 <JFXPasswordField fx:id="pwfSenha" focusColor="#295fff" labelFloat="true" promptText="Senha"
                                   GridPane.columnIndex="1">
                     <font>
@@ -66,43 +69,45 @@
                         <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
                 </JFXPasswordField>
-                <JFXTextField fx:id="txfNome" focusColor="#295fff" labelFloat="true" promptText="Nome"
-                              GridPane.rowIndex="1">
+                <ModelField fx:id="txfNome" fieldSize="25" focusColor="#295fff" labelFloat="true" promptText="Nome"
+                            GridPane.rowIndex="1">
                     <font>
                         <Font name="Roboto Medium" size="14.0"/>
                     </font>
                     <GridPane.margin>
                         <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
-                </JFXTextField>
-                <JFXTextField fx:id="txfSobrenome" focusColor="#295fff" labelFloat="true" promptText="Sobrenome"
-                              GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </ModelField>
+                <ModelField fx:id="txfSobrenome" fieldSize="60" focusColor="#295fff" labelFloat="true"
+                            promptText="Sobrenome"
+                            GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
                         <Font name="Roboto Medium" size="14.0"/>
                     </font>
                     <GridPane.margin>
                         <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
-                </JFXTextField>
-                <JFXTextField fx:id="txfEmail" focusColor="#295fff" labelFloat="true" promptText="E-mail"
-                              GridPane.rowIndex="2">
+                </ModelField>
+                <ModelField fx:id="txfEmail" fieldSize="60" focusColor="#295fff" labelFloat="true" promptText="E-mail"
+                            GridPane.rowIndex="2">
                     <font>
                         <Font name="Roboto Medium" size="14.0"/>
                     </font>
                     <GridPane.margin>
                         <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
-                </JFXTextField>
-                <JFXTextField fx:id="txfTelefone" focusColor="#295fff" labelFloat="true"
-                              promptText="Telefone"
-                              GridPane.columnIndex="1" GridPane.rowIndex="2">
+                </ModelField>
+                <ModelField fx:id="txfTelefone" fieldSize="11" modelFieldType="Number" focusColor="#295fff"
+                            labelFloat="true"
+                            promptText="Telefone"
+                            GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font name="Roboto Medium" size="14.0"/>
                     </font>
                     <GridPane.margin>
                         <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
-                </JFXTextField>
+                </ModelField>
                 <JFXButton fx:id="btnCadastrar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
                            style="-fx-background-color: LimeGreen;" text="Cadastrar" textFill="WHITE"
                            GridPane.rowIndex="4">

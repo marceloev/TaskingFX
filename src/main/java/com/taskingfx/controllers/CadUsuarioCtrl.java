@@ -50,9 +50,9 @@ public class CadUsuarioCtrl implements TskController {
 
     private void cadastrar() {
         try {
-            userJpaValidator.validate();
             if (service.findIfAlreadyExists(user.getLogin(), user.getCodigo()))
                 throw new ValidationException("Já existe um usuário cadastrado para este login");
+            userJpaValidator.validate();
             service.save(user);
             new ModelDialog(ModelDialogType.Info).show("Usuário cadastrado com sucesso");
             exit();
@@ -60,7 +60,7 @@ public class CadUsuarioCtrl implements TskController {
             new ModelDialog(ModelDialogType.Erro).show(ex.getMessage());
             TaskingLog.gravaErro(this.getClass(), "Erro de validação em " + user.getClass().getName(), ex);
         } catch (Exception ex) {
-            new ModelDialog(ModelDialogType.Erro).show(ex.getMessage());
+            new ModelDialog(ModelDialogType.Erro).show(ex.getMessage(), ex);
             TaskingLog.gravaErro(this.getClass(), "Erro de validação em " + user.getClass().getName(), ex);
         }
     }
