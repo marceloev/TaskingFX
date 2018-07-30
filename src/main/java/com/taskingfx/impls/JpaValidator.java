@@ -1,5 +1,6 @@
 package com.taskingfx.impls;
 
+import com.taskingfx.model.fields.JpaObject;
 import com.taskingfx.util.log.TaskingLog;
 
 import javax.persistence.Column;
@@ -53,37 +54,37 @@ public class JpaValidator<JpaEntity> {
         this.setJpaValidationList(validationList);
     }
 
-
     private JpaValidation getFieldErrors(Field field, JpaEntity jpaEntity) {
-        Column column = field.getAnnotation(Column.class);
         JpaValidation jpaValidation = new JpaValidation(field);
+        Column column = field.getAnnotation(Column.class);
+        JpaObject jpaObject = field.getAnnotation(JpaObject.class);
         if (column == null) {
-            System.out.println(String.format("Coluna JPA não definida para field: %s.%s",
-                    field.getClass().getName(),
-                    field.getName()));
+            TaskingLog.gravaAlerta(this.getClass(),
+                    String.format("Não foi denifinido estrutura JPA para o campo: %s.%s",
+                            field.getClass().getName(),
+                            field.getName()));
             return jpaValidation;
-        } else {
-            try {
-                field.setAccessible(true);
-                String value = NVL(field.get(jpaEntity));
-                if (value == null || value.isEmpty()) {
-                    if (!column.nullable()) {
-                        jpaValidation.getErrors()
-                                .add(String.format("%s não pode ser vazio", column.columnDefinition()));
-                    }
-                }
-                if (value != null && value.length() > column.length()) {
+        }
+        try {
+            field.setAccessible(true);
+            String value = NVL(field.get(jpaEntity));
+            if (value == null || value.isEmpty()) {
+                if (!column.nullable())
                     jpaValidation.getErrors()
-                            .add(String.format("%s deve conter até %d dígitos",
-                                    column.columnDefinition(),
-                                    column.length()));
-                }
-            } catch (Exception ex) {
-                jpaValidation.getErrors().clear();
-                TaskingLog.gravaErro(jpaEntity.getClass(),
-                        String.format("Erro ao tentar mapear entidade JPA: %s", field.toString(), ex));
-                ex.printStackTrace();
+                            .add(String.format("%s não pode ser vazio", getFieldName(jpaObject)));
             }
+            if (value != null && value.length() > column.length()) {
+                jpaValidation.getErrors()
+                        .add(String.format("%s deve conter até %d dígitos",
+                                getFieldName(jpaObject),
+                                column.length()));
+            }
+        } catch (Exception ex) {
+            jpaValidation.getErrors().clear();
+            TaskingLog.gravaErro(this.getClass(),
+                    String.format("Erro ao tentar capturar metadados JPA do campo: %s.%s",
+                            field.getClass().getName(),
+                            field.getName()), ex);
         }
         return jpaValidation;
     }
@@ -93,6 +94,13 @@ public class JpaValidator<JpaEntity> {
             return "";
         else
             return value.toString();
+    }
+
+    private final String getFieldName(JpaObject jpaObject) {
+        if (jpaObject == null)
+            return "<Campo Sem Descrição>";
+        else
+            return jpaObject.descricao();
     }
 
     public JpaEntity getJpaEntity() {

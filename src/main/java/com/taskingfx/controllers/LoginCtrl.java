@@ -16,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class LoginCtrl implements TskController {
 
@@ -34,7 +33,7 @@ public class LoginCtrl implements TskController {
         txfLogin.setOnAction(e -> startLogin());
         pwfSenha.setOnAction(e -> startLogin());
         btnLogin.setOnAction(e -> startLogin());
-        btnCadastrar.setOnAction(e -> showCadastroForm(this.btnCadastrar.getScene().getWindow()));
+        btnCadastrar.setOnAction(e -> showCadastroForm());
     }
 
     private void startLogin() {
@@ -42,10 +41,9 @@ public class LoginCtrl implements TskController {
                 pwfSenha.getText());
     }
 
-    public static void showCadastroForm(Window window) {
+    public static void showCadastroForm() {
         try {
             Stage stage = new Stage();
-            stage.initOwner(window);
             Parent root = FXMLLoader.load(TaskingFX.class.getResource(Paths.FXMLs.concat("cadUsuario.fxml")));
             Scene scene = new Scene(root);
             stage.setScene(scene);

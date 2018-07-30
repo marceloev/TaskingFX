@@ -2,7 +2,6 @@ package com.taskingfx.model.fields;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.scene.control.TextFormatter;
-import javafx.util.converter.IntegerStringConverter;
 
 public class ModelField extends JFXTextField {
 
@@ -31,9 +30,9 @@ public class ModelField extends JFXTextField {
         this.modelFieldType = modelFieldType;
         switch (modelFieldType) {
             case Upper:
+                this.setTextFormatter(upperFormatter());
                 break;
-            case Number:
-                this.setTextFormatter(numberFormatter());
+            case Inteiro:
                 break;
             case Texto:
                 break;
@@ -43,10 +42,15 @@ public class ModelField extends JFXTextField {
                 break;
             case Data_Hora:
                 break;
+            case Email:
+                break;
         }
     }
 
-    public TextFormatter<Integer> numberFormatter() {
-        return new TextFormatter<>(new IntegerStringConverter());
+    public TextFormatter upperFormatter() {
+        return new TextFormatter<>((change) -> {
+            change.setText(change.getText().toUpperCase());
+            return change;
+        });
     }
 }

@@ -1,5 +1,8 @@
 package com.taskingfx.entitys;
 
+import com.taskingfx.model.fields.JpaObject;
+import com.taskingfx.model.fields.ModelFieldType;
+
 import javax.persistence.*;
 
 @Entity(name = "User")
@@ -16,9 +19,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_TUSER")
     @Column(name = "CODUSU")
+    @JpaObject(descricao = "Código do Usuário", tipo = ModelFieldType.Inteiro)
     private int codigo;
 
     @Column(name = "ATIVO", nullable = false)
+    @JpaObject(descricao = "Ativo")
     private Character ativo = 'S';
 
     @Column(name = "LOGIN", length = 20, nullable = false, unique = true)
@@ -34,6 +39,7 @@ public class User {
     private String sobrenome;
 
     @Column(name = "EMAIL", length = 60, nullable = false)
+    @JpaObject(descricao = "E-mail", tipo = ModelFieldType.Email)
     private String email;
 
     @Column(name = "TELEFONE", length = 11, nullable = false)
